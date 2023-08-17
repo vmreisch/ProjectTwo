@@ -1,0 +1,9 @@
+<% smoothies.forEach( smoothie=> { %>
+<h1><%= smoothie.name %></h1>
+<p><%= smoothie.description %></p>
+<button id="<%= smoothie._id %>" class="addToOrderBtn">Add to order</button>
+<% }) %>
+
+<div>
+  <button id="submit">Submit Order</button>
+</div>

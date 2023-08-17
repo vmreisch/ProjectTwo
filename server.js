@@ -2,44 +2,34 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 const expressLayouts = require("express-ejs-layouts");
-const User = require("./models/user");
-
+const authRoutes = require("./controllers/authController");
+const session = require("express-session");
+const smoothieRoutes = require("./controllers/smoothieController");
 app.set("view engine", "ejs");
+
 app.use(express.static("public"));
 app.use(expressLayouts);
+app.use(
+  session({ secret: "somestringreandomdwd", cookie: { maxAge: 3600000 } })
+);
+
 app.use(express.urlencoded({ extended: true }));
+
+app.use(authRoutes);
 
 app.get("/", (req, res) => {
   res.render("home.ejs");
 });
 
-app.get("/login", (req, res) => {
-  res.render("account/login");
-});
-
-app.post("/login", async (req, res) => {
-  console.log(req.body);
-
-  let userToLogin = await User.findOne({ username: req.body.username });
-  if (userToLogin) {
-    if (userToLogin.password === req.body.password) {
-      res.send("Logged in");
-    } else {
-      res.send("Invalid User");
-    }
+app.use((req, res, next) => {
+  if (!req.session.userId) {
+    res.redirect("/login");
+    return;
   }
-});
-app.post("/signup", async (req, res) => {
-  console.log(req.body);
-  if (req.body.username && req.body.password) {
-    let newUser = await User.create(req.body);
 
-    res.send(newUser);
-  }
+  next();
 });
 
-app.get("/signup", (req, res) => {
-  res.render("account/signup");
-});
+app.use("/smoothie", smoothieRoutes);
 
 app.listen(PORT, () => console.log(`Blending on port ${PORT}!`));

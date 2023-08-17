@@ -11,7 +11,6 @@ antioxidants, detoxification, energy, heart health, and immunity.
 - Antioxidant Boost: Radiate with a free-radical fighting concoction.
 - Detoxification Tonic: Cleanse with a blend that purifies from within.
 - Energizer Bunny Blend: Invigorate your day.
-- Heart-Health Harmony: Nurture your heart with omega-rich ingredients.
 - Immunity Elixir: Fortify your defenses.
 
 ## Features
