@@ -1,6 +1,8 @@
 <% smoothies.forEach( smoothie=> { %>
 <h1><%= smoothie.name %></h1>
-<p><%= smoothie.description %></p>
+<h2><%= smoothie.description %></h2>
+<h3><%= smoothie.ingredients %></h3>
+<img src="<%= smoothie.image %>" alt="" class="smoothie-image" />
 <button id="<%= smoothie._id %>" class="addToOrderBtn">Add to order</button>
 <% }) %>
 
