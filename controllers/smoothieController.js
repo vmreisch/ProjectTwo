@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Smoothie = require("../models/smoothie");
+const Order = require("../models/order");
 
 router.get("/", async (req, res) => {
   let smoothies = await Smoothie.find();
@@ -65,6 +66,31 @@ router.get("/seed", async (req, res) => {
     },
   ]);
   res.send(seededSmoothies);
+});
+
+router.post("/order", async (req, res) => {
+  let smoothies = await Smoothie.find({ _id: { $in: req.body.smoothies } });
+  let total = 0;
+  req.body.smoothies.forEach(
+    (smoothie) =>
+      (total += smoothies.find((s) => {
+        return s._id.toString() == smoothie;
+      }).price)
+  );
+  console.log(total);
+  req.body.total = total;
+  //console.log(smoothies);
+  //console.log(req.body);
+  let newOrder = await Order.create(req.body);
+
+  res.json(newOrder);
+});
+
+router.get("/order/:id", async (req, res) => {
+  const order = await Order.findById(req.params.id)
+    .populate("smoothies")
+    .populate("userId");
+  res.render("order/show.ejs", { order });
 });
 
 module.exports = router;
