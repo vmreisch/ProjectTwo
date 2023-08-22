@@ -17,7 +17,7 @@ antioxidants, detoxification, energy, heart health, and immunity.
 
 - Homepage with pictures of all smoothies
   - User Login to view menu and place order
-  - Order history with ability to repeat a previous order
+  - Order history
 - Menu with description of smoothies, ingredients, and price
 
   - Includes individual pictures
@@ -40,6 +40,10 @@ antioxidants, detoxification, energy, heart health, and immunity.
 - MongoDB
 - Ejs
 - Bcrypt
+
+## Live Site
+
+- https://lifestye-smoothies.onrender.com/
 
 ## Trello and Wireframes
 
