@@ -1,9 +1,9 @@
+<% orders.forEach(order=>{ %>
 <h1>Order for <%= order.userId.username %></h1>
 <h2>Total: <%= order.total %></h2>
-
 <% order.smoothies.forEach( smoothie=> {%>
 <div>
   <h3><%= smoothie.name %> - <%= smoothie.price %></h3>
   <p><%= smoothie.description %></p>
 </div>
-<% }) %>
+<% }) %> <% }) %>

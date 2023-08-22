@@ -1,18 +1,66 @@
-h1 {
-  color: purple;
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffe5b4;
 }
 
-.landing-page {
-  display: flex;
-  padding: 5%;
+h1 {
+  color: purple;
 }
 
 #nav {
   display: flex;
   justify-content: space-around;
+  list-style-type: none;
+}
+main {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fffdd0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .smoothie-image {
   width: 200px;
   height: 300px;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.image-grid img {
+  width: 200px;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.content-container {
+  text-align: center;
+  padding: 20px;
+  margin-left: 170px;
+  margin-right: 50px;
+}
+.landing-page {
+  display: flex;
+  padding: 5%;
 }

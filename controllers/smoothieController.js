@@ -9,6 +9,8 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/seed", async (req, res) => {
+  await Order.deleteMany({});
+  await Smoothie.deleteMany({});
   let seededSmoothies = await Smoothie.create([
     {
       name: "Power-Lifters Blend",
@@ -70,6 +72,7 @@ router.get("/seed", async (req, res) => {
 
 router.post("/order", async (req, res) => {
   let smoothies = await Smoothie.find({ _id: { $in: req.body.smoothies } });
+  req.body.userId = req.session.userId;
   let total = 0;
   req.body.smoothies.forEach(
     (smoothie) =>
@@ -79,8 +82,6 @@ router.post("/order", async (req, res) => {
   );
   console.log(total);
   req.body.total = total;
-  //console.log(smoothies);
-  //console.log(req.body);
   let newOrder = await Order.create(req.body);
 
   res.json(newOrder);
@@ -91,6 +92,13 @@ router.get("/order/:id", async (req, res) => {
     .populate("smoothies")
     .populate("userId");
   res.render("order/show.ejs", { order });
+});
+
+router.get("/order", async (req, res) => {
+  const orders = await Order.find({ userId: req.session.userId })
+    .populate("smoothies")
+    .populate("userId");
+  res.render("order/index.ejs", { orders });
 });
 
 module.exports = router;
